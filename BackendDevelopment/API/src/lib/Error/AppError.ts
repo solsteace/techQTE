@@ -3,7 +3,11 @@ import { ErrorEntry } from "./index.ts"
 export enum AppErr {
     ImplementSoon = "ImplementSoon",
     NotImplemented = "NotImplemented",
-    Internal = "Internal"
+    Internal = "Internal",
+    NotFound = "NotFound",
+
+    // Put on another module later
+    PersistenceDuplicateRecord = "PersistenceDuplicateRecord"
 }
 
 const APP_ERR_ENTRY: { [key in AppErr]: ErrorEntry } = {
@@ -20,7 +24,17 @@ const APP_ERR_ENTRY: { [key in AppErr]: ErrorEntry } = {
     [AppErr.Internal]: {
         statusCode: 501,
         errName: AppErr.Internal,
-        clientErrMsg: "Something went wrong on our end. We're doing our best to diagnose and fix it. Sorry for your inconvenience!"
+        clientErrMsg: "Something went wrong on our end. We're doing our best to diagnose and fix it. Sorry for your inconvenience"
+    },
+    [AppErr.NotFound]: {
+        statusCode: 404,
+        errName: AppErr.NotFound,
+        clientErrMsg: "Sorry, we couldn't find the resource you requested."
+    },
+    [AppErr.PersistenceDuplicateRecord]: {
+        statusCode: 500,
+        errName: AppErr.PersistenceDuplicateRecord,
+        clientErrMsg: "Something went wrong during processing your data. Sorry for you inconvenience."
     }
 }
 
