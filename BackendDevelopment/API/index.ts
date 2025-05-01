@@ -1,5 +1,6 @@
 import { gEnv } from "env.ts";
 import express from "express";
+import { ErrorHandler } from "src/middlewares/errorHandler.ts";
 import { SimpleLogger } from "src/middlewares/logger.ts";
 
 
@@ -7,6 +8,8 @@ const APP = express()
 const startTime = Date.now()
 
 const loggerMiddleware = new SimpleLogger()
+const errorHandler = new ErrorHandler()
+
 APP.use(loggerMiddleware.handle.bind(loggerMiddleware))
 
 APP.get("/health", (_, res) => {
@@ -22,6 +25,8 @@ APP.get("/", (_, res) => {
         msg: "Route you're looking for doesn't exist"
     })
 })
+
+APP.use(errorHandler.handle.bind(errorHandler))
 
 APP.listen(gEnv.APP_PORT, () => {
     console.log(`App listening on port ${gEnv.APP_PORT}`)
