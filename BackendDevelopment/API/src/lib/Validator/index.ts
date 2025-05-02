@@ -2,6 +2,6 @@ export interface Validator<
     DataT,
     ErrorT extends Error
 > {
-    getErrMsg(error: any): string;
+    getErrMsg(error: ErrorT): string;
     validate(val: any): {data: DataT, error?: ErrorT}
 }
