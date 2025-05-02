@@ -20,12 +20,15 @@ export class Employee {
     })
 
     toJSON() {
-        return this.props
+        return {
+            id: this._id,
+            ...this.props,
+        }
     }
 
     private constructor(
         private props: EmployeeProps,
-        private id?: number
+        private _id?: number
     ) { }
 
     static create(props: EmployeeProps, id?: number) {
@@ -46,11 +49,13 @@ export class Employee {
         return new Employee(props, id)
     }
 
-    getId(): number | undefined {return this.id}
+    get id(): number | undefined {return this._id}
     get name(): string {return this.props.name}
     get position(): string {return this.props.position}
     get joinDate(): Date {return this.props.joinDate}
     get releaseDate(): Date {return this.props.releaseDate}
     get yearOfExperience(): number {return this.props.yearOfExperience}
     get salary(): number {return this.props.salary}
+
+    set id(newId: number) {this._id = newId}
 }

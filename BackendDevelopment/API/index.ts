@@ -13,6 +13,7 @@ const errorHandler = new ErrorHandler()
 
 APP.use(loggerMiddleware.handle.bind(loggerMiddleware))
 
+APP.use(express.urlencoded({extended: false}))
 APP.use("/api/v1", routerV1)
 APP.get("/health", (_, res) => {
     res.status(200)
