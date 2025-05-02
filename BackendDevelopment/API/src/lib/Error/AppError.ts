@@ -5,6 +5,7 @@ export enum AppErr {
     NotImplemented = "NotImplemented",
     Internal = "Internal",
     NotFound = "NotFound",
+    BadRequest = "Bad Request",
 
     // Put on another module later
     PersistenceDuplicateRecord = "PersistenceDuplicateRecord"
@@ -31,6 +32,11 @@ const APP_ERR_ENTRY: { [key in AppErr]: ErrorEntry } = {
         errName: AppErr.NotFound,
         clientErrMsg: "Sorry, we couldn't find the resource you requested."
     },
+    [AppErr.BadRequest]: {
+        statusCode: 400,
+        errName: AppErr.BadRequest,
+        clientErrMsg: "We could not process your data as some of them were found invalid on our checks."
+    },
     [AppErr.PersistenceDuplicateRecord]: {
         statusCode: 500,
         errName: AppErr.PersistenceDuplicateRecord,
@@ -48,4 +54,5 @@ export class AppError extends Error {
     }
 
     get entry(): ErrorEntry {return APP_ERR_ENTRY[this.name]}
+    get error(): Error | undefined {return this.err}
 }

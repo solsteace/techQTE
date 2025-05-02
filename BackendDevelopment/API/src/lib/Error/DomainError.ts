@@ -28,4 +28,5 @@ export class DomainError extends Error {
     }
 
     get entry(): ErrorEntry {return DOMAIN_ERR_ENTRY[this.name]}
+    get error(): Error | undefined {return this.err}
 }

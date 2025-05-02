@@ -14,6 +14,10 @@ export class ErrorHandler {
         }
 
         const isCustomError = ( err instanceof AppError)
+        if(!isCustomError) {
+            // TODO: Strip messages for non-custom errors
+        }
+
         const {statusCode, errName, clientErrMsg} = 
             isCustomError
             ? err.entry
@@ -28,7 +32,10 @@ export class ErrorHandler {
         ]
         console.log(errReport.join("\n"))
         res.status(statusCode)
-            .send({message: clientErrMsg})
+            .send({
+                message: clientErrMsg,
+                description: err.message
+            })
         return 
     }
 }
