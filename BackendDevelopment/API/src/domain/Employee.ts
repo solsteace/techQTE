@@ -48,9 +48,9 @@ export class Employee {
 
     getId(): number | undefined {return this.id}
     get name(): string {return this.props.name}
-    get position(): string {return this.position}
-    get joinDate(): Date {return this.joinDate}
-    get releaseDate(): Date {return this.releaseDate}
-    get yearOfExperience(): number {return this.yearOfExperience}
-    get salary(): number {return this.salary}
+    get position(): string {return this.props.position}
+    get joinDate(): Date {return this.props.joinDate}
+    get releaseDate(): Date {return this.props.releaseDate}
+    get yearOfExperience(): number {return this.props.yearOfExperience}
+    get salary(): number {return this.props.salary}
 }
