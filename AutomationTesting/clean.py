@@ -1,3 +1,4 @@
+import sys
 import os
 from datetime import datetime
 
@@ -7,7 +8,18 @@ SECONDS_IN_MONTH = 60 * 60 * 24 * 30
 # https://docs.python.org/3/library/os.html#os.scandir
 # https://docs.python.org/3/library/os.html#os.DirEntry
 if __name__ == "__main__":
-    target_dir = os.path.join(".", ".")
+    if sys.argv[1] == "-h":
+        print("\n".join([
+            "CSV Cleaner ===========",
+            "Checks a directory and removes .csv files after it being existed for a month",
+            "Args: [-h | <path>]",
+            "",
+            "-h\t: Displays this manual",
+            "<path>\t: Path of the directory to monitor. If omitted, current directory will be used instead."
+        ]))
+        sys.exit(0)
+
+    target_dir = os.path.join(".", ".") if len(sys.argv) == 1 else sys.argv[1]
     csv_files = filter(lambda x: x.is_file() and x.name.endswith(".csv"), \
                         os.scandir(target_dir))
     current_time = datetime.now().timestamp()

@@ -6,6 +6,17 @@ import requests
 
 
 if __name__ == "__main__":
+    if sys.argv[1] == "-h":
+        print("\n".join([
+            "JSONPlaceholder comment collector ===========",
+            "Extracts data from https://jsonplaceholder.typicode.com/comments and store them in csv file",
+            "Args: [-h | <path>]",
+            "",
+            "-h\t: Displays this manual",
+            "<path>\t: Path of the directory to save the file. If omitted, current directory will be used instead."
+        ]))
+        sys.exit(0)
+
     collection_date, collection_hour = \
         datetime.now()\
             .strftime("%Y-%m-%d %H-%M-%S")\
@@ -27,7 +38,7 @@ if __name__ == "__main__":
     row_header = rows[0].keys() if len(rows) > 0 else []
 
 
-    write_dir = os.path.join(".", ".")
+    write_dir = os.path.join(".", ".") if len(sys.argv) == 1 else sys.argv[1]
     write_path = os.path.join(write_dir, f"cron_{collection_date}_{collection_hour}.csv")
     with open(write_path, "w") as f:
         writer = csv.writer(f)
