@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     collection_date, collection_hour = \
         datetime.now()\
-            .strftime("%Y-%m-%d %H-%M-%S")\
+            .strftime("%d%m%Y %H.%M")\
             .split(" ")
 
     ok = False
