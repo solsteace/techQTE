@@ -1,0 +1,2 @@
+0 8,12,15 * * * python /path/to/collect.py /path/to/store
+* * * * * python /path/to/clean.py /path/to/monitor
