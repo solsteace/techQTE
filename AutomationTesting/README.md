@@ -14,20 +14,33 @@ Tired of doing laborish and repetitive tasks over and over? Enter Cron, a tool t
 
 ## Technicals
 
-### Dependencies
-
-This example needs the following to be able to run, make sure your machine has the following things installed:
-- Cron
-- Python 3
-- Bash
-
 ### Setup
 
-After installing all of the dependencies in your machine, follow through these steps:
+> Make sure your machine has the following things installed:
+> - Cron
+> - Python 3
+>   - `requests` (install with `pip install requests`)
+> - Bash
 
-1. Lorem ipsum
-2.  Dolro
-3. Sit Amet
+Follow through these steps:
+
+1. Make sure you are connected to your datasource, for example via the Internet.
+
+2. If needed, adjust the cronjob content to your need. You could also adjust the command trigger time. In this example, I would like to save the collected data and monitor them in `/home/cron`. 
+
+    > You may need to enter Python's full path if your machine doesn't recognize it simply by its name
+
+    ```
+    0 8,12,15 * * * python /path/to/collect.py /home/cron
+    * * * * * python /path/to/clean.py /home/cron
+    ```
+
+
+3. Add the cronjobs to your crontab entry. If you need a higher privilege for doing your cronjob, you could consider putting `sudo` at the beginning. Continuing from previous example, enter:
+
+    ```
+    sudo crontab -e
+    ```
 
 ### Extension
 
