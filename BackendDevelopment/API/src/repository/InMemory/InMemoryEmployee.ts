@@ -24,9 +24,6 @@ export class InMemoryEmployee implements EmployeeRepo{
         const endIdx = offset + (limit ?? InMemoryEmployee.list.length) 
         const rows = InMemoryEmployee.list.slice(offset, endIdx)
 
-        console.log(rows)
-        console.log(InMemoryEmployee.list)
-
         return rows.map(r => {
             return Employee.create({
                 name: r.name,
