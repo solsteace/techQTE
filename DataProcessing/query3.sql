@@ -24,7 +24,5 @@ WITH
             salary AS `monthly_pay`
         FROM `employees`)
 SELECT
-    `report`.work_month,
-    `report`.monthly_pay,
-    `report`.work_month * `report`.monthly_pay
+    SUM(`report`.work_month * `report`.monthly_pay) AS `2021_expense`
 FROM `report`;
