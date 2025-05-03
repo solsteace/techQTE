@@ -16,10 +16,10 @@ WITH
                     IF(release_date IS NULL OR release_date > DATE("2021-12-31"), 
                         DATE("2022-01-01"), 
                         release_date),
-                    IF(join_date > DATE("2021-01-01"),
-                        IF(join_date < DATE("2021-12-31"), join_date, DATE("2021-12-31")),
-                        DATE("2021-01-01"))
-                ) / 365 * 12
+                    IF(join_date < DATE("2021-01-01"),
+                        DATE("2021-01-01"),
+                        join_date)
+                ) / 30 * IF(join_date > DATE("2021-12-31") OR release_date < DATE("2021-01-01"), 0, 1)
             ) AS `work_month`,
             salary AS `monthly_pay`
         FROM `employees`)
