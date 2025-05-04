@@ -1,20 +1,22 @@
 import { SetStateAction, useEffect, useState } from "react"
 import { EmployeeEntry, EmployeeProps } from "../components/EmployeeEntry"
+import { Pages } from "."
 
 type EmployeeListProps = {
     refreshTrigger: boolean,
+    setPage: React.Dispatch<SetStateAction<Pages>>
     setRefreshTrigger: React.Dispatch<SetStateAction<boolean>>
 }
 
 export function EmployeeList(props: EmployeeListProps) {
-    const {refreshTrigger, setRefreshTrigger} = props
+    const {refreshTrigger, setRefreshTrigger, setPage} = props
     const [employees, setEmployees] = useState<EmployeeProps[]>([])
 
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/v1/employee") // TODO: move `origin` to env
         .then(res => {
             if(res.ok) 
-            return res.json()
+                return res.json()
         })
         .then(res => setEmployees(res.data))
         .catch(err => console.log(err))
@@ -25,7 +27,11 @@ export function EmployeeList(props: EmployeeListProps) {
             <div className="employeeList__header">
                 <h2>Employee list</h2>
                 <div className="employeeList__tools">
-                <button type="button" className="employeeList__tool"> + </button>
+                <button 
+                    type="button" 
+                    className="employeeList__tool"
+                    onClick={() => {setPage(Pages.EmployeeAdd)}}
+                > + </button>
                 <button 
                     type="button" 
                     className="employeeList__tool"

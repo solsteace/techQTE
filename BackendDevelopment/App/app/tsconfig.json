@@ -1,4 +1,10 @@
 {
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+    ],
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

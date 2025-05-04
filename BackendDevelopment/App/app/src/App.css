@@ -7,25 +7,30 @@
   margin: 0px;
   padding: 0px;
 }
-.employeeList__header {
+
+.employeeList__header,
+.employeeAdd__header {
   padding: 12px 24px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.employeeList__body {
+.employeeList__body,
+.employeeAdd__body {
   display: grid;
   grid-template: 1fr / 1fr 1fr 1fr;
   gap: 8px;
   padding: 12px 24px;
 }
 
-.employeeList__tools {
+.employeeList__tools,
+.employeeAdd__tools {
   display: flex;
   gap: 8px;
 }
 
+.employeeList__Add > button,
 .employeeList__tools > button {
   width: 1.25rem;
   height: 1.25rem;
@@ -37,6 +42,7 @@
   font-weight: bold;
 }
 
+.employeeAdd__tools > button:hover,
 .employeeList__tools > button:hover {
   transform: scale(1.2);
   border-radius: 20%;
@@ -83,4 +89,24 @@
   cursor: pointer;
   transform: scale(1.1);
   transition: 0.2s;
+}
+
+.employeeAdd__form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.employeeForm__entry {
+  display: flex;
+  justify-content: space-between;
+}
+
+.employeeForm__entry > * {
+  flex: 1;
+}
+
+.employeeForm__tools {
+  display: flex;
+  flex-direction: column;
 }

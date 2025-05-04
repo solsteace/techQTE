@@ -32,11 +32,11 @@ export function EmployeeEntry(
         </div>
       </div>
       <div className="employee__tools"> 
-        <button type="button"> Edit </button>
+        {/* <button type="button"> Edit </button> */}
         <button 
           type="button" 
           onClick={async() => {
-            fetch(
+            await fetch(
               `http://127.0.0.1:8000/api/v1/employee/${id}`,
               {method: "DELETE"}
             )
