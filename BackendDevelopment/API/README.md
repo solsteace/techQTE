@@ -48,13 +48,19 @@ Follow the following steps to be able to run and modify this project on your mac
     npm i
     ```
 
-2. Run the development server
+2. Setup required environment variables by creating `.env` files on the same directory as `env.ts`. Consult the required variables in `.env.example`. Here is an example of it:
+    ```
+    APP_MODE=DEV
+    APP_PORT=8000
+    ```
+
+3. Run the development server
 
     ```
     npm run dev
     ```
 
-3. Check the [following documentation](https://htpz255fbx.apidog.io) for the list of available endpoints. 
+4. Check the [following documentation](https://htpz255fbx.apidog.io) for the list of available endpoints. 
 
     > Note: For working solution, please use the `cUrl` (or something similar) provided in the documentation to do the request. As the time of writing, I still can't make the Apidog documentation UI make proper request to local server.
 
